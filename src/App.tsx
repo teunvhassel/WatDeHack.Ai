@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Shield } from 'lucide-react';
 import { ApiKeyProvider, useApiKey } from './context/ApiKeyContext';
 import { ApiKeyInput } from './components/ApiKeyInput';
 import { FileUpload } from './components/FileUpload';
-import { Analysis } from './components/AnalysisComponent';
+import AnalysisResult from './components/AnalysisResult';
 import { ErrorMessage } from './components/ErrorMessage';
 import { analyzeContent } from './services/groq';
 import { processImageFile, processEmailFile } from './utils/fileProcessing';
-import { AnalysisResult } from './types';
+import { AnalysisResult as AnalysisResultType } from './types';
 
 function SecurityAnalyzer() {
   const { apiKey, setApiKey } = useApiKey();
-  const [result, setResult] = useState<AnalysisResult | null>(null);
+  const [result, setResult] = useState<AnalysisResultType | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,6 +65,7 @@ function SecurityAnalyzer() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
+      {loading && <div>Loading...</div>}
       <div className="max-w-6xl mx-auto">
         <header className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -86,7 +87,7 @@ function SecurityAnalyzer() {
         </div>
 
         <div className="flex justify-center">
-          <Analysis result={result} loading={loading} />
+          <AnalysisResult result={result ? JSON.stringify(result) : ''} />
         </div>
 
         {error && (
