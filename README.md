@@ -64,9 +64,4 @@ Contributies zijn welkom! Open een issue of maak een pull request om verbetering
 ## Licentie
 Deze applicatie is gelicentieerd onder de MIT-licentie.
 
-## Ondersteuning
-Als je vragen hebt of ondersteuning nodig hebt, neem dan contact op via [contactinformatie].
-
----
-
 Veel succes met het gebruik van WatDeHack!
